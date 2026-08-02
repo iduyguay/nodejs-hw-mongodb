@@ -1,0 +1,59 @@
+tags:
+  - Contacts
+summary: Update a contact
+operationId: updateContact
+description: Update an existing contact's information
+security:
+  - bearerAuth: []
+parameters:
+  - name: id
+    in: path
+    required: true
+    schema:
+      type: string
+    description: Contact ID
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          name:
+            type: string
+            description: The contact's full name
+          email:
+            type: string
+            format: email
+            description: The contact's email address
+          phone:
+            type: string
+            description: The contact's phone number
+          favorite:
+            type: boolean
+            description: Whether the contact should be marked as favorite
+responses:
+  '200':
+    description: Contact updated successfully
+    content:
+      application/json:
+        schema:
+          $ref: '../../../../swagger/components/schemas/Contact.yaml'
+  '400':
+    description: Invalid input
+    content:
+      application/json:
+        schema:
+          $ref: '../../../../swagger/components/schemas/Error.yaml'
+  '401':
+    description: Unauthorized
+    content:
+      application/json:
+        schema:
+          $ref: '../../../../swagger/components/schemas/Error.yaml'
+  '404':
+    description: Contact not found
+    content:
+      application/json:
+        schema:
+          $ref: '../../../../swagger/components/schemas/Error.yaml' 
