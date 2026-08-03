@@ -20,6 +20,14 @@ export const startServer = () => {
   app.use(cookieParser());
   app.use(express.static(path.join(__dirname, 'public')));
 
+  app.get('/', (req, res) => {
+    res.json({
+      status: 200,
+      message: 'Welcome to Contact Management API',
+      documentation: '/api-docs',
+    });
+  });
+
   app.get('/auth/reset-password', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'reset-password.html'));
   });
