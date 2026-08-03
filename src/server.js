@@ -21,11 +21,7 @@ export const startServer = () => {
   app.use(express.static(path.join(__dirname, 'public')));
 
   app.get('/', (req, res) => {
-    res.json({
-      status: 200,
-      message: 'Welcome to Contact Management API',
-      documentation: '/api-docs',
-    });
+    res.redirect('/api-docs');
   });
 
   app.get('/auth/reset-password', (req, res) => {
